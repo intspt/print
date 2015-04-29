@@ -3,17 +3,19 @@
 
 from app import db
 
-class Admin(db.Model):
-	__tablename__ = 'admin'
-	aid = db.Column(db.Integer, primary_key=True)
-	name = db.Column(db.String(22))
-	password = db.Column(db.String(22))
+class User(db.Model):
+    __tablename__ = 'user'
+    uid = db.Column(db.Integer, primary_key=True, unique = True)
+    name = db.Column(db.String(22))
+    password = db.Column(db.String(22))
+    role = db.Column(db.Boolean)
+    
+    def __init__(self, name, password, role = False):
+        self.name = name
+        self.password = password
+        self.role = role
 
-	def __init__(self, name, password):
-		self.name = name
-		self.password = password
-
-	def is_authenticated(self):
+    def is_authenticated(self):
         return True
 
     def is_active(self):
@@ -21,6 +23,9 @@ class Admin(db.Model):
 
     def is_anonymous(self):
         return False
+
+    def is_admin(self):
+        return self.role
 
     def get_id(self):
         return unicode(self.uid)
