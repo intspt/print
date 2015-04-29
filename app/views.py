@@ -4,7 +4,7 @@
 import time
 
 from app import app, db, lm
-from flask import render_template
+from flask import render_template, g
 from flask.ext.login import current_user
 
 @app.before_request
