@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <meta charset = “utf-8” />
-    <meta http-equic = “Content-type” content = “text/html; charset = utf-8” />
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <meta charset = “utf-8” />
+        <meta http-equic = “Content-type” content = “text/html; charset = utf-8” />
+        <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+        <script src="../static/js/jquery-2.0.3.min.js"></script>
+        <script src="../static/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <h1>欢迎使用打印系统</h1>
-    {% block content%}
-    {% endblock %}
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                    {% if g.user.is_authenticated() %}
+                        <li> <a href ="#" type = 'button'> Logout </a> </li>
+                    {% else %}
+                       <li> <a href = "#" > Login </a> </li>
+                    {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class = "container">
+        <center>
+            <h1>欢迎使用打印系统</h1>
+            <hr/>
+            {% block content%}
+            {% endblock %}
+        </center>
+        </div>
     </body>
 </html>
