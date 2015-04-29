@@ -1,17 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-    <center>
-        <div class="form-group">
-            <form>
-                Team ID:
-                <input type = "text" name = "teamID" placeholder = "Team ID">
-                <br/>
-                打印内容:
-                <br/>
-                <textarea name = "content" class="form-control" rows="30"></textarea>
-                <br/>
-                <button type="submit" >Save</button>
-            </form>
-        </div>
-    </center>
+    <div class="form-group">
+        <form>
+            Team ID:
+            <input type = "text" name = "teamID" placeholder = "Team ID">
+            <br/>
+            打印内容:
+            <br/>
+            <textarea name = "content" class="form-control" rows="15"></textarea>
+            <br/>
+            <button type="submit" >Save</button>
+        </form>
+    </div>
 {% endblock %}
