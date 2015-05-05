@@ -1,7 +1,6 @@
-#content{
-    width: 500px;
-}
-
-#input{
-    width: 200px;
+#wrapper {
+    position: relative;
+    width: 70%;
+    top: 20px;
+    margin: 0 auto;
 }
