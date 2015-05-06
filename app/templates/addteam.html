@@ -1,4 +1,6 @@
-{% extend "base.html"%}
+{% extends "base.html"%}
 {% block content %}
-    <textarea id="content" rows="40"></textarea>
+    <form class="team-add-form pr" method="POST" action="addTeam">
+        <textarea name="content" class="team-add-text" rows="40"></textarea>
+    </form>
 {% endblock %}
