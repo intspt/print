@@ -111,14 +111,3 @@ def team_list():
 def logout():
     logout_user()
     return redirect('/')
-
-
-@app.route('/list')
-@throw_exception
-def list():
-    return render_template('list.html')
-
-@app.route('/addTeam')
-@throw_exception
-def addTeam():
-    return render_template('addteam.html')
