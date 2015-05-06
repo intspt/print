@@ -9,7 +9,7 @@ class User(db.Model):
     name = db.Column(db.String(22))
     password = db.Column(db.String(22))
     is_admin = db.Column(db.Boolean)
-    
+
     def __init__(self, name, password, is_admin=False):
         self.name = name
         self.password = password
@@ -31,21 +31,23 @@ class User(db.Model):
         return unicode(self.uid)
 
 class Team(db.Model):
-	__tablename__ = 'team'
-	tid = db.Column(db.Integer, primary_key=True)
-	number = db.Column(db.Integer)
-	location = db.Column(db.String(99))
+    __tablename__ = 'team'
+    tid = db.Column(db.Integer, primary_key=True)
+    number = db.Column(db.Integer)
+    location = db.Column(db.String(99))
 
-	def __init__(self, number, location):
-		self.number = number
-		self.location = location
+    def __init__(self, number, location):
+        self.number = number
+        self.location = location
 
 class Submit(db.Model):
-	__tablename__ = 'submit'
-	sid = db.Column(db.Integer, primary_key=True)
-	team_number = db.Column(db.Integer)
-	content = db.Column(db.Text)
+    __tablename__ = 'submit'
+    sid = db.Column(db.Integer, primary_key=True)
+    team_number = db.Column(db.Integer)
+    content = db.Column(db.Text)
+    time = db.Column(db.String(9))
 
-	def __init__(self, team_number, content):
-		self.team_number = team_number
-		self.content = content
+    def __init__(self, team_number, content, time):
+        self.team_number = team_number
+        self.content = content
+        self.time = time
