@@ -4,3 +4,12 @@
     top: 20px;
     margin: 0 auto;
 }
+
+#content{
+    width: 60%;
+}
+
+.label{
+    display: inline-block;
+    width: 200px;
+}

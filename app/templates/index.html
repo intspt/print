@@ -3,13 +3,18 @@
     <div class="form-group">
         <form>
             Team ID:
-            <input type="text" name="teamID" placeholder="Team ID">
+            {% if g.user.is_authenticated() %}
+                {{ g.user.name }}
+            {% else %}
+                <input type="text" name="teamID" placeholder="Team ID">
+            {% endif %}
+            
             <br/>
             打印内容:
             <br/>
-            <textarea name="content" class="form-control" id="content" rows="40"></textarea>
+            <textarea name="content" id="content" rows="40"></textarea>
             <br/>
-            <button type="submit" >Save</button>
+            <button type="submit" >Print</button>
         </form>
     </div>
 {% endblock %}
