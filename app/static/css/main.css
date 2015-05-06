@@ -4,3 +4,53 @@
     top: 20px;
     margin: 0 auto;
 }
+
+.container {
+    margin: 0 auto;
+
+}
+.form-group {
+    margin:0 auto;
+    width: 80%;
+}
+.print-content-form {
+
+}
+.print-content-form span {
+    display: block;
+}
+.team-add-form {
+    margin: 0 auto
+}
+.team-add-text {
+    width: 80%;
+}
+.print-content-text {
+    width: 100%;    
+
+}
+
+.label{
+    display: inline-block;
+    width: 200px;
+}
+
+li {
+    list-style-type: none;
+}
+
+.tl {
+    text-align: left;
+}
+.tr {
+    text-align: right;
+}
+.tc {
+    text-align: center;
+}
+.pa{
+    position: absolute;
+}
+.pr {
+    position: relative;
+}
