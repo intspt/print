@@ -1,0 +1,8 @@
+{% extends "base.html"%}
+{% block content %}
+    <form class="team-add-form pr" method="POST" action="/addUser">
+        <textarea name="content" class="team-add-text" rows="23"></textarea>
+        <br />
+        <button type="submit"> 提交 </button>
+    </form>
+{% endblock %}

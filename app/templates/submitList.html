@@ -1,0 +1,29 @@
+{% extends "base.html"%}
+{% block content %}
+   <table>
+        <thead>
+            <tr>
+            <th>打印序号</th>
+            <th>队名</th>
+            <th>提交时间</th>
+            <th>打印</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for submit in submit_list %}
+            <tr style="{{ loop.cycle('', 'background-color:#D7EBFF') }}">
+                <td> {{ submit.id_ }} </td>
+                <td> {{ submit.user_name }} </td>
+                <td> {{ submit.time_ }} </td>
+                <td>
+                    {% if not submit.is_printed %}
+                        <a href={{ url_for('print_code', submitID=submit.id_)}}> 打印 </a>
+                    {% else %}
+                        <span>wait</span>
+                    {% endif %}
+                </td>
+            {% endfor %}
+            </tr>
+        </tbody>
+   </table>
+{% endblock %}

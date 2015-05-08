@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
+    {% with message = get_flashed_messages() %}
+    {% if message %}
+        <h3 class="red"> {{ message[0] }} </h3>
+    {% endif %}
+    {% endwith %}
     <div class="form-group">
-        <form class="print-content-form">
-            <span>Team ID:
-            {% if g.user.is_authenticated() %}
-                {{ g.user.name }}
-            {% else %}
-                <input type="text" name="teamID" placeholder="Team ID">
-            {% endif %}
-            </span>
-            打印内容:
-            <textarea name="content" class="print-content-text" id="content" rows="40"></textarea>
-            <button type="submit" >Print</button>
+        <form class="print-content-form" action='/' method="POST">
+            <ul>
+                <li>打印内容:</li>
+                <li><textarea name="content" class="print-content-text" rows="23"></textarea></li>
+                <li><button type="submit" > 打印 </button></li>
+            </ul>
         </form>
     </div>
 {% endblock %}
