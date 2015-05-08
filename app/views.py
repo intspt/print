@@ -43,9 +43,9 @@ def before_request():
 
 @app.route('/', methods = ['GET', 'POST'])
 @login_required
-@throw_exception
+# @throw_exception
 def home():
-    if current_user.is_admin():
+    if current_user.is_admin:
         return render_template('admin.html')
     else:
         if request.method == 'GET':
@@ -105,11 +105,22 @@ def print_code():
     submit = Submit.query.filter_by(id_=request.args['submitID']).first()
     return submit.content
 
+@app.route('/deleteUser/<int:uid>')
+@admin_required
+@throw_exception  
+def delete_user(uid):
+    user = User.query.get(uid)
+    db.session.delete(user)
+    db.session.commit()
+    db.session.close()
+    return redirect('/teamList')
+
 @app.route('/userList')
 @admin_required
 @throw_exception
 def user_list():
-    pass
+    user_list = User.query.all()
+    return render_template('userList.html', user_list = user_list)
 
 @app.route('/logout')
 @login_required
