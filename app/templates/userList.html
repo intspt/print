@@ -24,7 +24,7 @@
                     {% else %}
                         <td> 普通用户 </td>
                     {% endif %}
-                    <td><a href="{{ url_for('delete_user', uid = user.id_) }}"> Delete </a></td>
+                    <td><a href="{{ url_for('delete_user', uid = user.id_) }}"> 删除 </a></td>
                     </tr>
                 {% endfor %}
             </tbody>
