@@ -6,14 +6,12 @@
     {% endif %}
     {% endwith %}
     <div class="form-group">
-<<<<<<< HEAD
         <form class="print-content-form" action='/' method="POST">
             <ul>
                 <li>打印内容:</li>
                 <li><textarea name="content" class="print-content-text" rows="23"></textarea></li>
                 <li><button type="submit" > 打印 </button></li>
             </ul>
-=======
         <form class="print-content-form" >
             <span>
             {% if g.user.is_authenticated() %}
@@ -26,7 +24,6 @@
                 Please Login
             {% endif %}
             </span>
->>>>>>> origin/master
         </form>
     </div>
 {% endblock %}
