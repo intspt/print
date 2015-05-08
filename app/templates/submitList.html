@@ -1,32 +1,29 @@
 {% extends "base.html"%}
 {% block content %}
-    <a href={{ url_for('home') }}>Admin Page</a>
+    <a href={{ url_for('home') }}> 管理页面 </a>
     <div class="list-style">
         <table class="table" style="margin:auto">
             <thead>
                 <tr>
-                <th>打印序号</th>
-                <th>队名</th>
-                <th>提交时间</th>
-                <th>打印</th>
+                <th> 打印序号 </th>
+                <th> 队名 </th>
+                <th> 提交时间 </th>
+                <th> 打印 </th>
                 </tr>
             </thead>
             <tbody>
                 {% for submit in submit_list %}
-                <tr style="{{ loop.cycle('', 'background-color:#D7EBFF') }}">
+                <tr {% if submit.is_printed %} style="background-color:#D7EBFF" {% endif %}>
                     <td> {{ submit.id_ }} </td>
                     <td> {{ submit.user_name }} </td>
                     <td> {{ submit.time_ }} </td>
                     <td>
-                        {% if not submit.is_printed %}
-                            <a href={{ url_for('print_code', submitID=submit.id_)}}> 打印 </a>
-                        {% else %}
-                            <span>wait</span>
-                        {% endif %}
+                        <a href={{ url_for('print_code', submitID=submit.id_)}} target="_blank"> 打印 </a>
                     </td>
-                {% endfor %}
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
+    <a href="#top"> 返回顶部 </a>
 {% endblock %}

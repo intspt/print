@@ -43,7 +43,7 @@ def before_request():
 
 @app.route('/', methods = ['GET', 'POST'])
 @login_required
-# @throw_exception
+@throw_exception
 def home():
     if current_user.is_admin:
         return render_template('admin.html')
@@ -79,13 +79,13 @@ def login():
 @admin_required
 @throw_exception
 def submit_list():
-    submit_list = Submit.query.order_by('submit.id_ DESC')
+    submit_list = Submit.query.order_by(Submit.id_.desc())
     return render_template('submitList.html', submit_list=submit_list)
 
 @app.route('/addUser', methods = ['GET', 'POST'])
 @admin_required
 @throw_exception
-def add_team():
+def add_user():
     if request.method == 'GET':
         return render_template('addUser.html')
     else:
@@ -103,24 +103,30 @@ def add_team():
 @throw_exception
 def print_code():
     submit = Submit.query.filter_by(id_=request.args['submitID']).first()
-    return submit.content
+    user = User.query.filter_by(name=submit.user_name).first()
+    content = submit.content.split('\n')
+    name, location = user.name, user.location
+    Submit.query.filter_by(id_=request.args['submitID']).update({'is_printed': True})
+    db.session.commit()
+    db.session.close()
+    return render_template('printCode.html', name=name, location=location, content=[(i + 1, line) for (i, line) in enumerate(content)])
 
-@app.route('/deleteUser/<int:uid>')
+@app.route('/deleteUser')
 @admin_required
 @throw_exception  
-def delete_user(uid):
-    user = User.query.get(uid)
+def delete_user():
+    user = User.query.get(request.args['uid'])
     db.session.delete(user)
     db.session.commit()
     db.session.close()
-    return redirect('/teamList')
+    return redirect('/userList')
 
 @app.route('/userList')
 @admin_required
 @throw_exception
 def user_list():
     user_list = User.query.all()
-    return render_template('userList.html', user_list = user_list)
+    return render_template('userList.html', user_list=user_list)
 
 @app.route('/logout')
 @login_required

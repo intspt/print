@@ -11,7 +11,7 @@ class User(db.Model):
     is_admin = db.Column(db.Boolean)
     location = db.Column(db.String(99))
 
-    def __init__(self, name, password, is_admin=False, location=None):
+    def __init__(self, name, password, is_admin=False, location=''):
         self.name = name
         self.password = password
         self.is_admin = is_admin
