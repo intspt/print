@@ -1,17 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="form-group">
-        <form class="print-content-form">
-            <span>Team ID:
+        <form class="print-content-form" >
+            <span>
             {% if g.user.is_authenticated() %}
+                Team ID:
                 {{ g.user.name }}
+                打印内容:
+                <textarea name="content" class="print-content-text" id="content" rows="40"></textarea>
+                <button type="submit" >Print</button>
             {% else %}
-                <input type="text" name="teamID" placeholder="Team ID">
+                Please Login
             {% endif %}
             </span>
-            打印内容:
-            <textarea name="content" class="print-content-text" id="content" rows="40"></textarea>
-            <button type="submit" >Print</button>
         </form>
     </div>
 {% endblock %}

@@ -1,6 +1,8 @@
 {% extends "base.html"%}
 {% block content %}
-   <table>
+    <a href={{ url_for('home') }}>Admin Page</a>
+    <div class="list-style">
+    <table class="table" style="margin:auto">
         <thead>
             <tr>
             <th>打印序号</th>
@@ -14,5 +16,6 @@
             <td></td>
             </tr>
         </tbody>
-   </table>
+    </table>
+    </div>
 {% endblock %}
