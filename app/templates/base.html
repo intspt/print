@@ -10,13 +10,18 @@
         <div id="wrapper">
             <div class="container tc">
                 <h1>欢迎使用打印系统</h1>
-                <div style="text-align: right">
-                {% if g.user.is_authenticated() %}
-                    <span> {{ g.user.name }} </span>
-                    <a href={{ url_for('logout') }} type ="button"> 退出 </a>
-                {% else %}
-                    <a href={{ url_for('login') }}> 登录 </a>
-                {% endif %}
+                <div>
+                    <div style="float: left">
+                        <a style="text-align: left" href="/board"> 排行榜 </a>
+                    </div>
+                    <div style="text-align: right">
+                    {% if g.user.is_authenticated() %}
+                        <span> {{ g.user.name }} </span>
+                        <a href={{ url_for('logout') }} type ="button"> 退出 </a>
+                    {% else %}
+                        <a href={{ url_for('login') }}> 登录 </a>
+                    {% endif %}
+                    </div>
                 </div>
                 <hr/>
                 {% block content %}

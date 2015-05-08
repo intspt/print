@@ -134,3 +134,8 @@ def user_list():
 def logout():
     logout_user()
     return redirect('/')
+
+@app.route('/board')
+@throw_exception
+def board():
+    return render_template('summary.html')
