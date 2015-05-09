@@ -7,6 +7,8 @@ pip install -r requirements.txt
 
 windows注意下环境变量是否配置正确
 
+config.py中有一些可以更改的配置
+
 添加队伍不能有空行
 每行队伍信息顺序是:
 队伍名 密码 座位信息
