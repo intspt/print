@@ -10,6 +10,7 @@ from flask.ext.login import current_user, login_user, logout_user, login_require
 from app import app, db, lm
 from models import User, Submit
 from config import LOGIN_INFO_ERROR, PERMISSION_ERROR, SUBMIT_SECCESS_INFO
+from getBoard import getBoard, getSolvelist
 
 def get_now_time():
     return time.strftime('%H:%M:%S',time.localtime(time.time()))
@@ -139,3 +140,15 @@ def logout():
 @throw_exception
 def board():
     return render_template('summary.html')
+
+@app.route('/balloon')
+@admin_required
+@throw_exception
+def balloon():
+    getBoard()
+    solvelist =  getSolvelist()
+    for record in solvelist:
+        if record[1] != '0':
+            # print record[0].encode('utf-8')
+            team = User.query.filter_by(name = record[0]).first()
+    return render_template('balloon.html')
