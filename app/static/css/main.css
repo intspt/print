@@ -80,3 +80,7 @@ thead {
   vertical-align: bottom;
   border-bottom: 2px solid #ddd;
 }
+
+.color{
+  width: 30%;
+}

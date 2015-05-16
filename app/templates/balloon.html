@@ -1,4 +1,108 @@
-{% extends "base.html" %}
+
+{% extends "base.html"%}
 {% block content %}
-    
+    <form class="team-add-form pr" method="POST" action="/balloon">
+        <table>
+            <thead>
+                <tr>
+                    <label>题目数:</label>
+                    {% if problem_num == 0 %}
+                        <input type="text" name="problem_num" class="color"></input>
+                    {% else %}
+                        <input type="text" name="problem_num" class="color" value={{ problem_num }}></input>
+                        <a type="button" href="/resetBalloon">重置题目数和气球</a>
+                    {% endif %}
+                </tr>
+                <br/>
+                <tr>
+                    颜色设置:(请按顺序填写)
+                </tr>
+            </thead>
+            <tbody>
+                    {% if problem_num == 0 %}
+                    <tr>
+                        <td>
+                            <label>气球1:</label>
+                            <input type="text" name="1" class="color"></input>
+                        </td>
+                        <td>
+                            <label>气球2:</label>
+                            <input type="text" name="2" class="color"></input>
+                        </td>
+                        <td>
+                            <label>气球3:</label>
+                            <input type="text" name="3" class="color"></input>
+                        </td>
+                        <td>
+                            <label>气球4:</label>
+                            <input type="text" name="4" class="color"></input>
+                        </td>
+                        <td>
+                            <label>气球5:</label>
+                            <input type="text" name="5" class="color"></input>
+                        </td>
+                        <td>
+                            <label>气球6:</label>
+                            <input type="text" name="6" class="color"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>气球7:</label>
+                            <input type="text" name="7" class="color"></input>
+                        </td>
+                        <td>
+                            <label>气球8:</label>
+                            <input type="text" name="8" class="color"></input>
+                        </td>
+                        <td>
+                            <label>气球9:</label>
+                            <input type="text" name="9" class="color"></input>
+                        </td>
+                        <td>
+                            <label>气球10:</label>
+                            <input type="text" name="10" class="color"></input>
+                        </td>
+                        <td>
+                            <label>气球11:</label>
+                            <input type="text" name="11" class="color"></input>
+                        </td>
+                        <td>
+                            <label>气球12:</label>
+                            <input type="text" name="12" class="color"></input>
+                        </td>
+                    </tr>
+                    {% else %}
+                        {% for col in color %}
+                            <td>
+                                <label>气球{{col[0]}}:</label>
+                                <input type="text" name={{col[0]}} class="color" value={{col[1]}}></input>
+                            </td>
+                        {% endfor %}
+                    {% endif %}
+                    <br/>
+            </tbody>
+        </table>
+        <button type="submit"> 保存气球设置 </button>
+    </form>
+    <div class="list-style">
+        <table class="table" style="margin:auto">
+            <thead>
+                <tr>
+                <th> 气球信息 </th>
+                <th> 是否发放 </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for balloon in balloon_list %}
+                <tr>
+                    <td {% if sent_list[balloon[1]]==True %} style="background-color:#D7EBFF" {% endif %} > {{ balloon[0] }} </td>
+                    <td>
+                        <a href={{ url_for('sendBalloon', idx = balloon[1] )}}> 发放气球 </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
