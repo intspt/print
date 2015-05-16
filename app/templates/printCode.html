@@ -8,8 +8,8 @@
     </head>
     <body>
         <div id="wrapper">
-            <div> {{ name }} </div>
-            <div> {{ location }} </div>
+            <span> {{ name }} </span>
+            <span> {{ location }} </span>
             <hr />
             <pre>{% for line in content %}{{ line[0] }}&#009;{{line[1] }}{% endfor %}</pre>
         </div>
