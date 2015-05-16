@@ -5,14 +5,12 @@ import os
 
 BOARD_ADDR = './app/templates/summary.html'
 
-solvelist = []
 
 def getBoard(problem_num):
     if not os.path.exists(BOARD_ADDR):
         print 'path error, no summary.html'
     else:
-        global solvelist
-        solvelist = []
+        solve_list = []
         board = open(BOARD_ADDR, 'r')
         contents = board.read().decode('utf-8')
         pattern = re.compile(r'<tr>(.*?)</tr>', re.S)
@@ -33,17 +31,15 @@ def getBoard(problem_num):
                 for i in range(4, problem_num + 4):
                         record.append(info[0][i][2])
                 # print record
-                solvelist.append(record)
+                solve_list.append(record)
         board.close()
-        output = open('./app/data/solveList.txt', 'w') #如果需要保存信息到文件可以去掉注释
-        for data in solvelist:
-            for info in data:
-                output.write(info.encode('utf-8')+' ')
-            output.write('\n')
-        output.close()
-
-def getSolvelist():
-    return solvelist
+        # output = open('./app/data/solve_list.txt', 'w') #如果需要保存信息到文件可以去掉注释
+        # for data in solve_list:
+        #     for info in data:
+        #         output.write(info.encode('utf-8')+' ')
+        #     output.write('\n')
+        # output.close()
+        return solve_list
 
 #测试部分
 # if __name__ == '__main__':

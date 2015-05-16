@@ -10,7 +10,7 @@ from flask.ext.login import current_user, login_user, logout_user, login_require
 from app import app, db, lm
 from models import User, Submit
 from config import LOGIN_INFO_ERROR, PERMISSION_ERROR, SUBMIT_SECCESS_INFO
-from getBoard import getBoard, getSolvelist
+from getBoard import getBoard
 
 color = []
 problem_num = 0
@@ -160,13 +160,13 @@ def balloon():
             print color[i]
         return redirect('/balloon')
     elif problem_num == 0:
+        sent_list = []
         return render_template('balloon.html', balloonList = [], sent_list = [], problem_num = problem_num, color = [])
     else:
         # for i in range(problem_num):
         #     print color[i]
         print sent_list
-        getBoard(problem_num)
-        solve_list =  getSolvelist()
+        solve_list = getBoard(problem_num)
         balloon_list = []
         cnt = 0
         for record in solve_list:

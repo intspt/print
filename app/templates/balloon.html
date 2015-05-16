@@ -7,9 +7,9 @@
                 <tr>
                     <label>题目数:</label>
                     {% if problem_num == 0 %}
-                        <input type="text" name="problem_num" class="color"></input>
+                        <input type="text" name="problem_num" style="width: 50px;"></input>
                     {% else %}
-                        <input type="text" name="problem_num" class="color" value={{ problem_num }}></input>
+                        <input type="text" name="problem_num" style="width: 50px;" value={{ problem_num }}></input>
                         <a type="button" href="/resetBalloon">重置题目数和气球</a>
                     {% endif %}
                 </tr>
@@ -95,12 +95,16 @@
             </thead>
             <tbody>
                 {% for balloon in balloon_list %}
-                <tr>
-                    <td {% if sent_list[balloon[1]]==True %} style="background-color:#D7EBFF" {% endif %} > {{ balloon[0] }} </td>
-                    <td>
-                        <a href={{ url_for('sendBalloon', idx = balloon[1] )}}> 发放气球 </a>
-                    </td>
-                </tr>
+                    <tr {% if sent_list[balloon[1]]==True %} style="background-color:#D7EBFF" {% endif %}>
+                        <td> {{ balloon[0] }} </td>
+                        {% if sent_list[balloon[1]]==True %}
+                            <td> 已经发放 </td>
+                        {% else %}
+                            <td>
+                                <a href={{ url_for('sendBalloon', idx = balloon[1] )}}> 发放气球 </a>
+                            </td>
+                        {% endif %}
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
