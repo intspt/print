@@ -146,7 +146,7 @@ def board():
 
 @app.route('/balloon', methods = ['GET', 'POST'])
 @admin_required
-# @throw_exception
+@throw_exception
 def balloon():
     global color, problem_num, balloon_list, sent_list 
     if request.method == 'POST':
