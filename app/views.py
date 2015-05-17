@@ -167,17 +167,23 @@ def balloon():
             if record[1] != '0':
                 # print record[0].encode('utf-8'), record
                 team = User.query.filter_by(name = record[0]).first()
-                flag = team.name in [item[0] for item in teams]
-                if not flag:
-                    teams.append([team.name] + [False for i in range(problem_num)])
+                flag = -1
+                for idx in range(len(teams)):
+                    if team.name == teams[idx][0]:
+                        flag = idx
+                        break
+                if flag == -1:
+                    teams.append([team.name] + [None for i in range(problem_num)])
+                    flag = len(teams) - 1
                 for i in range(problem_num):
                     if record[2 + i][2] != '-':
                         message = u'给座位:' + team.location + u' 队伍:' + team.name + u' 送第' + str(i + 1) + u'题 ' + color[i][1] +u'色气球'
                         # print message.encode('utf-8')
                         balloon_list.append([message, cnt])
                         cnt += 1
+                        teams[flag][i + 1] = False
                         if cnt > len(sent_list):
-                            sent_list.append([False, team.name, i + 1])
+                            sent_list.append([False, flag, i + 1])
         return render_template('balloon.html', balloon_list = balloon_list, teams = teams, sent_list = sent_list, problem_num = problem_num, color = color)
 
 @app.route('/resetBalloon')
@@ -198,8 +204,7 @@ def sendBalloon(idx):
     global sent_list
     print len(sent_list[idx]), sent_list
     sent_list[idx][0] = True
-    idy = [item[0] for item in teams].index(sent_list[idx][1])
-    teams[idy][sent_list[idx][2]] = True
+    teams[sent_list[idx][1]][sent_list[idx][2]] = True
     return redirect('/balloon')
 
 

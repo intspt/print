@@ -136,7 +136,9 @@
                                 <td style="background-color:#D7EBFF"> Y </td>
                             {% elif item == False %}
                                 <td class="red"> W </td>
-                            {% else%}
+                            {% elif item == None %}
+                                <td ></td>
+                            {% else %}
                                 <td > {{ item }} </td>
                             {% endif %}
                         {% endfor %}
