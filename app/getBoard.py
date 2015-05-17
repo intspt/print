@@ -1,7 +1,7 @@
 #-*- coding:utf-8 -*-
 
-import re
-import os
+import os, re
+from bs4 import BeautifulSoup 
 
 BOARD_ADDR = './app/templates/summary.html'
 
@@ -13,23 +13,14 @@ def getBoard(problem_num):
         solve_list = []
         board = open(BOARD_ADDR, 'r')
         contents = board.read().decode('utf-8')
-        pattern = re.compile(r'<tr>(.*?)</tr>', re.S)
-        lines = re.findall(pattern, contents)
-        pattern = ''
-        for i in range(problem_num + 5):  #summary里td标签除题目个数以外是5个
-            pattern += '<td>(.*?)</td>'
-        # print pattern
-        pattern = re.compile(pattern, re.S)
-        for line in lines:
-            # print line
-            info = re.findall(pattern, line)
-            # print info
-            if info and info[0][0] != '':
-                # print info, len(info)
-                record = []
-                record = [info[0][1], info[0][2]]   #队伍名和总共解决的题数
-                for i in range(4, problem_num + 4):
-                        record.append(info[0][i][2])
+        soup = BeautifulSoup(contents)
+        tr = soup.select('tr')
+        for line in tr:
+            record = [text for text in line.stripped_strings]
+            # aa = u'2'  ＃这里测试都是True, 下面用record[0].isdigit()返回全是False
+            # print aa.isdigit(), type(aa)
+            if len(record) == problem_num + 5 and re.match(r'[0-9]+', record[0]): #不知道为啥record[0].isdigit()返回的全是False
+                del record[0], record[2], record[problem_num + 2]
                 # print record
                 solve_list.append(record)
         board.close()
@@ -41,7 +32,7 @@ def getBoard(problem_num):
         # output.close()
         return solve_list
 
-#测试部分
+# 测试部分
 # if __name__ == '__main__':
 #     problem_num = raw_input('please input problem number')
 #     getBoard(int(problem_num))
