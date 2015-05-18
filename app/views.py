@@ -175,15 +175,16 @@ def balloon():
                 if flag == -1:
                     teams.append([team.name] + [None for i in range(problem_num)])
                     flag = len(teams) - 1
+                print flag
                 for i in range(problem_num):
                     if record[2 + i][2] != '-':
                         message = u'给座位:' + team.location + u' 队伍:' + team.name + u' 送第' + str(i + 1) + u'题 ' + color[i][1] +u'色气球'
                         # print message.encode('utf-8')
                         balloon_list.append([message, cnt])
                         cnt += 1
-                        teams[flag][i + 1] = False
                         if cnt > len(sent_list):
                             sent_list.append([False, flag, i + 1])
+                        teams[flag][i + 1] = sent_list[cnt - 1][0]
         return render_template('balloon.html', balloon_list = balloon_list, teams = teams, sent_list = sent_list, problem_num = problem_num, color = color)
 
 @app.route('/resetBalloon')
@@ -202,7 +203,6 @@ def resetBalloon():
 @throw_exception
 def sendBalloon(idx):
     global sent_list
-    print len(sent_list[idx]), sent_list
     sent_list[idx][0] = True
     teams[sent_list[idx][1]][sent_list[idx][2]] = True
     return redirect('/balloon')
