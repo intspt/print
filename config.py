@@ -14,3 +14,10 @@ SUBMIT_SECCESS_INFO = u'提交成功'
 
 ADMIN_NAME = 'rikka'
 ADMIN_PASSWORD = 'yuta'
+
+#用户名最大长度
+NAME_LEN = 22
+#用户密码最大长度
+PASSWORD_LEN = 22
+#座位信息最大长度
+LOCATION_LEN = 99

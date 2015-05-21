@@ -2,14 +2,15 @@
 #-*- coding:utf-8 -*-
 
 from app import db
+from config import NAME_LEN, PASSWORD_LEN, LOCATION_LEN
 
 class User(db.Model):
     __tablename__ = 'user'
     id_ = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(22))
-    password = db.Column(db.String(22))
+    name = db.Column(db.String(NAME_LEN))
+    password = db.Column(db.String(PASSWORD_LEN))
     is_admin = db.Column(db.Boolean)
-    location = db.Column(db.String(99))
+    location = db.Column(db.String(LOCATION_LEN))
 
     def __init__(self, name, password, is_admin=False, location=''):
         self.name = name
