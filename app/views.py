@@ -93,7 +93,7 @@ def add_user():
     else:
         user_list = request.form['content'].split('\n')
         for user in user_list:
-            name, password, location = user.split()
+            name, password, location = user.split('\t')
             db.session.add(User(name, password, location=location))
             db.session.commit()
             db.session.close()
