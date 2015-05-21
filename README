@@ -6,7 +6,7 @@ python 2.7(.9)
 pip install -r requirements.txt
 
 config.py中有一些可以更改的配置
-init.py用于初始化数据库
+使用前请运行init.py初始化数据库
 
 每行队伍信息顺序是:
 队伍名 密码 座位信息
