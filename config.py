@@ -14,9 +14,3 @@ SUBMIT_SECCESS_INFO = u'提交成功'
 
 ADMIN_NAME = 'rikka'
 ADMIN_PASSWORD = 'yuta'
-
-color = []
-problem_num = 0
-balloon_list = []
-sent_list = []
-teams = []

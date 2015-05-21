@@ -5,8 +5,6 @@ python 2.7(.9)
 
 pip install -r requirements.txt
 
-windows注意下环境变量是否配置正确
-
 config.py中有一些可以更改的配置
 init.py用于初始化
 
