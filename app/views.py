@@ -9,7 +9,7 @@ from flask.ext.login import current_user, login_user, logout_user, login_require
 
 from app import app, db, lm
 from models import User, Submit
-from config import LOGIN_INFO_ERROR, PERMISSION_ERROR, SUBMIT_SECCESS_INFO
+from config import LOGIN_INFO_ERROR, PERMISSION_ERROR
 
 
 
