@@ -40,8 +40,6 @@
 						<p class="navbar-text"> {{ g.user.name }} </p>
 						<a href={{ url_for('logout') }}><button class="btn btn-default navbar-btn" type="button" >退出</button></a>
 					</div>
-				{% else %}
-					<a href={{ url_for('login') }}><button class="btn btn-default navbar-btn navbar-right" type="button" >登录</button></a>
 				{% endif %}
 			</div>
 		</nav>
