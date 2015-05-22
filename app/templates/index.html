@@ -9,4 +9,19 @@
 					</ul>
 				</form>
 			</div>
+            <script language="javascript">
+                function Adjust()
+                {
+                    if(document.getElementById("team-add-form"))
+                    {
+                        var h=window.innerHeight;
+                        document.getElementById("team-add-form").style.height=parseInt(h)+"px";
+                    }
+                    if(document.getElementById("print-content-text"))
+                    {
+                        var h=window.innerHeight;
+                        document.getElementById("print-content-text").style.height=parseInt(h*0.55)+"px";
+                    }
+                }
+            </script>
 {% endblock %}

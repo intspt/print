@@ -9,40 +9,34 @@
         {% endif %}
         <link rel="stylesheet" href="../static/css/normalize.css">
         <link rel="stylesheet" href="../static/css/main.css">
-		<script language="javascript">
-			function Adjust()
-			{
-				if(document.getElementById("team-add-form"))
-				{
-					var h=window.innerHeight;
-					document.getElementById("team-add-form").style.height=parseInt(h)+"px";
-				}
-				if(document.getElementById("print-content-text"))
-				{
-					var h=window.innerHeight;
-					document.getElementById("print-content-text").style.height=parseInt(h*0.55)+"px";
-				}
-			}
-		</script>
     </head>
     <body onload="Adjust()">
 	<div id="wrapper">
+        {% if g.user.is_authenticated() and g.user.is_admin %}
 		<nav class="navbar navbar-lg navbar-inverse navbar-embossed" role="navigation">
 			<span class="navbar-brand">欢迎使用综合服务系统</span>
 			<div class="collapse navbar-collapse" id="navbar-collapse-8">
 				<ul class="nav navbar-nav">
-				{% if g.user.is_admin %}
 					<li><a href={{ url_for('home') }}>管理页面</a></li>
-				{% endif %}
 				</ul>
 				{% if g.user.is_authenticated() %}
 					<div class="navbar-right">
-						<p class="navbar-text"> {{ g.user.name }} </p>
+						<span class="navbar-text"> {{ g.user.name }} </span>
 						<a href={{ url_for('logout') }}><button class="btn btn-default navbar-btn" type="button" >退出</button></a>
 					</div>
 				{% endif %}
 			</div>
 		</nav>
+        {% else %}
+        <h1>欢迎使用综合服务系统</h1>
+            {% if g.user.is_authenticated() %}
+                <div style="text-align:right;">
+                    <span style="margin-right:15px;"> {{ g.user.name }} </span>
+                    <a href={{ url_for('logout') }}><button class="btn btn-default navbar-btn" type="button" >退出</button></a>
+                </div>
+            {% endif %}
+
+        {% endif %}
 		<hr/>
         {% block content %}
         {% endblock %}
