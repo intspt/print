@@ -1,10 +1,5 @@
 {% extends "base.html" %}
 {% block content %}
-    {% with message = get_flashed_messages() %}
-    {% if message %}
-        <h3 class="red"> {{ message[0] }} </h3>
-    {% endif %}
-    {% endwith %}
 		    <div class="form-group">
 				<form class="print-content-form" action='/' method="POST">
 					<ul style="padding:0px;">

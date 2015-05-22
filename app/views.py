@@ -4,7 +4,7 @@
 import time
 from functools import wraps
 
-from flask import render_template, g, request, redirect, flash
+from flask import render_template, g, request, redirect
 from flask.ext.login import current_user, login_user, logout_user, login_required
 
 from app import app, db, lm
@@ -57,7 +57,6 @@ def home():
             db.session.add(submit)
             db.session.commit()
             db.session.close()
-            flash(SUBMIT_SECCESS_INFO)
             return redirect('/')
 
 @app.route('/login', methods = ['GET', 'POST'])
