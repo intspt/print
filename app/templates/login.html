@@ -5,15 +5,15 @@
         <h3 class="red"> {{ message[0] }} </h3>
     {% endif %}
     {% endwith %}
-    <form action='/login' method="POST">
-        <div class="row">
-        <label class="label">User Name:</label>
-        <input type="text" name="name"></input>
-        <br/>
-        <label class="label">Password:</label>
-        <input type="password" name="password"></input>
-        <br/>
-        <button type="submit"> 登录 </button>
-        </div>
-    </form>
+    <div class="row">
+        <form action='/login' method="POST">
+            <label class="label">User Name:</label>
+            <input type="text" name="name"></input>
+            <br/>
+            <label class="label">Password:</label>
+            <input type="password" name="password"></input>
+            <br/>
+            <button class="btn btn-primary" type="submit"> 登录 </button>
+        </form>
+    </div>
 {% endblock %}

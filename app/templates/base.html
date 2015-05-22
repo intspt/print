@@ -3,32 +3,49 @@
     <head>
         <meta charset = "utf-8" />
         <meta http-equic = "Content-type" content = "text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../static/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../static/css/flat-ui.min.css">
         <link rel="stylesheet" href="../static/css/normalize.css">
         <link rel="stylesheet" href="../static/css/main.css">
+		<script language="javascript">
+			function Adjust()
+			{
+				if(document.getElementById("team-add-form"))
+				{
+					var h=window.innerHeight;
+					document.getElementById("team-add-form").style.height=parseInt(h)+"px";
+				}
+				if(document.getElementById("print-content-text"))
+				{
+					var h=window.innerHeight;
+					document.getElementById("print-content-text").style.height=parseInt(h*0.55)+"px";
+				}
+			}
+		</script>
     </head>
-    <body>
-        <div id="wrapper">
-            <div class="container tc">
-                <h1>欢迎使用综合服务系统</h1>
-                <div>
-                    <div style="float: left">
-                        {% if g.user.is_admin %}
-                            <a style="margin-left: 10px" href={{ url_for('home') }}> 管理页面 </a>
-                        {% endif %}
-                    </div>
-                    <div style="text-align: right">
-                    {% if g.user.is_authenticated() %}
-                        <span> {{ g.user.name }} </span>
-                        <a href={{ url_for('logout') }} type ="button"> 退出 </a>
-                    {% else %}
-                        <a href={{ url_for('login') }}> 登录 </a>
-                    {% endif %}
-                    </div>
-                </div>
-                <hr/>
-                {% block content %}
-                {% endblock %}
-            </div>
-        </div>
+    <body onload="Adjust()">
+	<div id="wrapper">
+		<nav class="navbar navbar-lg navbar-inverse navbar-embossed" role="navigation">
+			<span class="navbar-brand">欢迎使用综合服务系统</span>
+			<div class="collapse navbar-collapse" id="navbar-collapse-8">
+				<ul class="nav navbar-nav">
+				{% if g.user.is_admin %}
+					<li><a href={{ url_for('home') }}>管理页面</a></li>
+				{% endif %}
+				</ul>
+				{% if g.user.is_authenticated() %}
+					<div class="navbar-right">
+						<p class="navbar-text"> {{ g.user.name }} </p>
+						<a href={{ url_for('logout') }}><button class="btn btn-default navbar-btn" type="button" >退出</button></a>
+					</div>
+				{% else %}
+					<a href={{ url_for('login') }}><button class="btn btn-default navbar-btn navbar-right" type="button" >登录</button></a>
+				{% endif %}
+			</div>
+		</nav>
+		<hr/>
+        {% block content %}
+        {% endblock %}
+		</div>
     </body>
 </html>

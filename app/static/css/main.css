@@ -1,8 +1,14 @@
 #wrapper {
     position: relative;
-    width: 70%;
+    width: 80%;
     top: 20px;
     margin: 0 auto;
+}
+
+#g-admin li
+{
+	display:inline;
+	padding:20px;
 }
 
 .container {
@@ -11,10 +17,11 @@
 }
 .form-group {
     margin:0 auto;
-    width: 80%;
+    width: 70%;
 }
 .print-content-form {
-
+	margin:0 auto;
+	width:100%;
 }
 .print-content-form span {
     display: block;
@@ -23,10 +30,14 @@
     margin: 0 auto
 }
 .team-add-text {
-    width: 80%;
+    width: 70%;
+    height:60%;
+    border-radius: 6px;
 }
 .print-content-text {
-    width: 90%;
+    width: 100%;
+	margin: 0 auto;
+	border-radius: 6px;
     overflow-y:visible;
 }
 .red {
